@@ -1,0 +1,14 @@
+#idBar {
+	display: flex;
+	justify-content: center;
+}
+
+.clDate {
+	flex-direction: row;
+	font: 12px sans-serif;
+	color: steelblue;
+}
+
+.clDate:hover {
+	color: brown;
+}
