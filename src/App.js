@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // import React from 'react';
 import ReactLogoComp from './components/ReactLogoComp';
 import Part1Comp from './components/Part1Comp';
-import D3Histogram from './components/D3Histogram';
+import D3HistogramComp from './components/D3HistogramComp';
 import D3BarGraph from './components/D3BarGraph';
-import D3RadarChart from './components/D3RadarChartComp';
+import D3RadarChartComp from './components/D3RadarChartComp';
 import './App.css';
 
 class App extends Component {
@@ -20,7 +20,6 @@ class App extends Component {
     this.setState({
       display: event.target.name,
     })
-
   }
 
   render () {
@@ -29,11 +28,11 @@ class App extends Component {
     if (this.state.display === 'react') {
       display = <ReactLogoComp/>
     } else if (this.state.display === 'hist') {
-      display = <D3Histogram/>
+      display = <D3HistogramComp/>
     } else if (this.state.display === 'bar') {
       display = <D3BarGraph/>
     } else if (this.state.display === 'radar') {
-      display = <D3RadarChart/>
+      display = <D3RadarChartComp/>
     } else {
       display = 
       <div>
@@ -48,6 +47,7 @@ class App extends Component {
         <div className="div-flex-center" onClick={this.onPushed}>
           <button name="react" className="button-space">React</button>
           <button name="hist" className="button-space">Histogram</button>
+          <button name="histv2" className="button-space">Histogram V2</button>
           <button name="radar" className="button-space">Radar Chart</button>
           <button name="bar" className="button-space">Bar Graph</button>
           <button name="rest" className="button-space">Rest</button>

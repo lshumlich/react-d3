@@ -45,18 +45,18 @@ function radarChart(id, data, options) {
 	//If the supplied maxValue is smaller than the actual one, replace by the max in the data
 	var maxValue = Math.max(
 		cfg.maxValue,
-		d3.max(data, function(i) {
+		d3.max(data, function (i) {
 			return d3.max(
-				i.map(function(o) {
+				i.map(function (o) {
 					return o.value;
 				})
 			);
 		})
 	);
 
-	var allAxis = data[0].map(function(i, j) {
-			return i.axis;
-		}), //Names of each axis
+	var allAxis = data[0].map(function (i, j) {
+		return i.axis;
+	}), //Names of each axis
 		total = allAxis.length, //The number of different axes
 		radius = Math.min(cfg.w / 2, cfg.h / 2), //Radius of the outermost circle
 		Format = d3.format("%"), //Percentage formatting
@@ -91,10 +91,10 @@ function radarChart(id, data, options) {
 		.attr(
 			"transform",
 			"translate(" +
-				(cfg.w / 2 + cfg.margin.left) +
-				"," +
-				(cfg.h / 2 + cfg.margin.top) +
-				")"
+			(cfg.w / 2 + cfg.margin.left) +
+			"," +
+			(cfg.h / 2 + cfg.margin.top) +
+			")"
 		);
 
 	/////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ function radarChart(id, data, options) {
 		.enter()
 		.append("circle")
 		.attr("class", "gridCircle")
-		.attr("r", function(d, i) {
+		.attr("r", function (d, i) {
 			return (radius / cfg.levels) * d;
 		})
 		.style("fill", "#CDCDCD")
@@ -146,13 +146,13 @@ function radarChart(id, data, options) {
 		.append("text")
 		.attr("class", "axisLabel")
 		.attr("x", 4)
-		.attr("y", function(d) {
+		.attr("y", function (d) {
 			return (-d * radius) / cfg.levels;
 		})
 		.attr("dy", "0.4em")
 		.style("font-size", "10px")
 		.attr("fill", "#737373")
-		.text(function(d, i) {
+		.text(function (d, i) {
 			return Format((maxValue * d) / cfg.levels);
 		});
 
@@ -171,12 +171,12 @@ function radarChart(id, data, options) {
 	axis.append("line")
 		.attr("x1", 0)
 		.attr("y1", 0)
-		.attr("x2", function(d, i) {
+		.attr("x2", function (d, i) {
 			return (
 				rScale(maxValue * 1.1) * Math.cos(angleSlice * i - Math.PI / 2)
 			);
 		})
-		.attr("y2", function(d, i) {
+		.attr("y2", function (d, i) {
 			return (
 				rScale(maxValue * 1.1) * Math.sin(angleSlice * i - Math.PI / 2)
 			);
@@ -191,19 +191,19 @@ function radarChart(id, data, options) {
 		.style("font-size", "11px")
 		.attr("text-anchor", "middle")
 		.attr("dy", "0.35em")
-		.attr("x", function(d, i) {
+		.attr("x", function (d, i) {
 			return (
 				rScale(maxValue * cfg.labelFactor) *
 				Math.cos(angleSlice * i - Math.PI / 2)
 			);
 		})
-		.attr("y", function(d, i) {
+		.attr("y", function (d, i) {
 			return (
 				rScale(maxValue * cfg.labelFactor) *
 				Math.sin(angleSlice * i - Math.PI / 2)
 			);
 		})
-		.text(function(d) {
+		.text(function (d) {
 			return d;
 		})
 		.call(wrap, cfg.wrapWidth);
@@ -219,10 +219,10 @@ function radarChart(id, data, options) {
 	var radarLine = d3
 		.lineRadial()
 		.curve(d3.curveBasisClosed)
-		.radius(function(d) {
+		.radius(function (d) {
 			return rScale(d.value);
 		})
-		.angle(function(d, i) {
+		.angle(function (d, i) {
 			return i * angleSlice;
 		});
 
@@ -243,14 +243,14 @@ function radarChart(id, data, options) {
 	blobWrapper
 		.append("path")
 		.attr("class", "radarArea")
-		.attr("d", function(d, i) {
+		.attr("d", function (d, i) {
 			return radarLine(d);
 		})
-		.style("fill", function(d, i) {
+		.style("fill", function (d, i) {
 			return cfg.color(i);
 		})
 		.style("fill-opacity", cfg.opacityArea)
-		.on("mouseover", function(d, i) {
+		.on("mouseover", function (d, i) {
 			//Dim all blobs
 			d3.selectAll(".radarArea")
 				.transition()
@@ -262,7 +262,7 @@ function radarChart(id, data, options) {
 				.duration(200)
 				.style("fill-opacity", 0.7);
 		})
-		.on("mouseout", function() {
+		.on("mouseout", function () {
 			//Bring back all blobs
 			d3.selectAll(".radarArea")
 				.transition()
@@ -274,11 +274,11 @@ function radarChart(id, data, options) {
 	blobWrapper
 		.append("path")
 		.attr("class", "radarStroke")
-		.attr("d", function(d, i) {
+		.attr("d", function (d, i) {
 			return radarLine(d);
 		})
 		.style("stroke-width", cfg.strokeWidth + "px")
-		.style("stroke", function(d, i) {
+		.style("stroke", function (d, i) {
 			return cfg.color(i);
 		})
 		.style("fill", "none")
@@ -287,20 +287,20 @@ function radarChart(id, data, options) {
 	//Append the circles
 	blobWrapper
 		.selectAll(".radarCircle")
-		.data(function(d, i) {
+		.data(function (d, i) {
 			return d;
 		})
 		.enter()
 		.append("circle")
 		.attr("class", "radarCircle")
 		.attr("r", cfg.dotRadius)
-		.attr("cx", function(d, i) {
+		.attr("cx", function (d, i) {
 			return rScale(d.value) * Math.cos(angleSlice * i - Math.PI / 2);
 		})
-		.attr("cy", function(d, i) {
+		.attr("cy", function (d, i) {
 			return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2);
 		})
-		.style("fill", function(d, i, j) {
+		.style("fill", function (d, i, j) {
 			return cfg.color(j);
 		})
 		.style("fill-opacity", 0.8);
@@ -320,22 +320,22 @@ function radarChart(id, data, options) {
 	//Append a set of invisible circles on top for the mouseover pop-up
 	blobCircleWrapper
 		.selectAll(".radarInvisibleCircle")
-		.data(function(d, i) {
+		.data(function (d, i) {
 			return d;
 		})
 		.enter()
 		.append("circle")
 		.attr("class", "radarInvisibleCircle")
 		.attr("r", cfg.dotRadius * 1.5)
-		.attr("cx", function(d, i) {
+		.attr("cx", function (d, i) {
 			return rScale(d.value) * Math.cos(angleSlice * i - Math.PI / 2);
 		})
-		.attr("cy", function(d, i) {
+		.attr("cy", function (d, i) {
 			return rScale(d.value) * Math.sin(angleSlice * i - Math.PI / 2);
 		})
 		.style("fill", "none")
 		.style("pointer-events", "all")
-		.on("mouseover", function(d, i) {
+		.on("mouseover", function (d, i) {
 			const newX = parseFloat(d3.select(this).attr("cx")) - 10;
 			const newY = parseFloat(d3.select(this).attr("cy")) - 10;
 
@@ -347,7 +347,7 @@ function radarChart(id, data, options) {
 				.duration(200)
 				.style("opacity", 1);
 		})
-		.on("mouseout", function() {
+		.on("mouseout", function () {
 			tooltip
 				.transition()
 				.duration(200)
@@ -367,7 +367,7 @@ function radarChart(id, data, options) {
 	//Taken from http://bl.ocks.org/mbostock/7555321
 	//Wraps SVG text
 	function wrap(text, width) {
-		text.each(function() {
+		text.each(function () {
 			var text = d3.select(this),
 				words = text
 					.text()
