@@ -4,19 +4,19 @@ import * as d3 from 'd3'
  * Inspired by: http://bl.ocks.org/nnattawat/8916402
  */
 
-class D3HistogramV2 {
+class D3Histogram {
 
     drawHistogram = (id, values, options) => {
 
         this.cfg = {
-            ticks: 20, // approxamate number of ticks
+            ticks: 20,          // approxamate number of ticks
             color: "steelblue", // any color
-            format: ",.0f",  // for options: https://github.com/d3/d3-format 
+            format: ",.0f",     // for options: https://github.com/d3/d3-format 
             width: 960,
             height: 500,
             margin: { top: 20, right: 30, bottom: 30, left: 30 },
-            min: null, // if you wish to override
-            max: null, // if you wish to override
+            min: null,          // if you wish to override
+            max: null,          // if you wish to override
         }
 
         //Put all of the overriden options into a variable called cfg
@@ -163,4 +163,4 @@ class D3HistogramV2 {
     // }
 
 }
-export default D3HistogramV2;
+export default D3Histogram;

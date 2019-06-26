@@ -1,0 +1,35 @@
+.fade {
+    opacity: 0.5;
+    fill: steelblue;
+}
+
+.fade:hover {
+    opacity: 1;
+}
+
+.rotate:hover {
+    fill: steelblue;
+    -webkit-transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    transform: rotateZ(-30deg);
+}
+
+.shrink {
+    fill: steelblue;
+}
+
+.shrink:hover {
+    fill: steelblue;
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+.obj {
+    opacity: 0.5;
+    fill: steelblue;
+}
+
+.obj:hover {
+    opacity: 1;
+}

@@ -20,11 +20,11 @@ class D3HistogramComp extends Component {
 
     drawHistogram = () => {
         // Generate a 1000 data points using normal distribution with mean=20, deviation=5
-        let values = d3.range(1000).map(d3.randomNormal(20, 5));
-        // let values = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
-        // let values = [1,2,3,4,5,6,7,8,9,9,9,9,9,9,10,11,12,13,14,15,16,17,18,19];
-        // let values = [1,,6,7,8,9,9,9,9,9,9,10,11,12,12,12,13,14,15,16,17,18,19];
-        let options = {
+        const values = d3.range(1000).map(d3.randomNormal(20, 5));
+        // const values = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+        // const values = [1,2,3,4,5,6,7,8,9,9,9,9,9,9,10,11,12,13,14,15,16,17,18,19];
+        // const values = [1,,6,7,8,9,9,9,9,9,9,10,11,12,12,12,13,14,15,16,17,18,19];
+        const options = {
             ticks: 20,
             color: "steelblue",
             format: ",.0f",
