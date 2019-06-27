@@ -29,10 +29,10 @@ class D3Play {
 
     play = () => {
 
-        // this.simpleSelect();
+        this.simpleSelect();
         // this.simpleDataSelect();
         // this.simpleSVG();
-        this.simpleDataSVG();
+        // this.simpleDataSVG();
 
     }
 

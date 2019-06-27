@@ -5,6 +5,7 @@ import D3BarGraph from './components/D3BarGraph';
 import D3BarGraphV2Comp from './components/D3BarGraphV2Comp';
 import D3RadarChartComp from './components/D3RadarChartComp';
 import D3PlayComp from './components/D3PlayComp';
+import SideNavComp from './components/SideNavCompV2';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,22 @@ class App extends Component {
     super();
     this.title = "My Name is Larry and I am in control of this app";
     this.state = {display: 'play'};
+    this.options = [
+      { label: "React", value: 'react' },
+      { label: "Play", value: 'play' },
+      { label: "Bar Graph V2", value: 'barv2' },
+    ];
+    this.options.title = "From App";
+    this.options.callback = this.setDisplay;
   }
+
+  setDisplay = (option) => {
+    // console.log("setDisplay",option);
+    this.setState({
+      display: option,
+    })
+  }
+
 
   onPushed = (event) => {
     // console.log("You Pushed Me",event.target, event.target.name);
@@ -47,6 +63,9 @@ class App extends Component {
     }
     return (
       <div className="App" >
+
+        <SideNavComp options={this.options}/>
+
         <div className="div-flex-center" onClick={this.onPushed}>
           <button name="react" className="button-space">React</button>
           <button name="hist" className="button-space">Histogram</button>
