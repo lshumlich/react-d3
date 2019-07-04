@@ -13,40 +13,34 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {display: WelcomeComp};
+    this.state = { display: WelcomeComp };
     // this.state = {display: D3ComboComp};
     this.options = [
       { label: "Welcome", value: WelcomeComp },
       { label: "React", value: ReactLogoComp },
       { label: "Play", value: D3PlayComp },
-      { label: "Bar Graph", value: D3BarGraphComp},
-      { label: "Histogram", value: D3HistogramComp},
-      { label: "Radar Chart", value: D3RadarChartComp},
-      { label: "Combo", value: D3ComboComp},
+      { label: "Bar Graph", value: D3BarGraphComp },
+      { label: "Histogram", value: D3HistogramComp },
+      { label: "Radar Chart", value: D3RadarChartComp },
+      { label: "Combo", value: D3ComboComp },
     ];
-    this.options.title = "From App";
+    // this.options.title = "From App";
     this.options.callback = this.setDisplay;
   }
 
+
   setDisplay = (option) => {
-    // console.log("setDisplay",option);
+    console.log("D3PlayComp.setDisplay:", option);
     this.setState({
       display: option,
     })
   }
 
-  // onPushed = (event) => {
-  //   // console.log("You Pushed Me",event.target, event.target.name);
-  //   this.setState({
-  //     display: event.target.name,
-  //   })
-  // }
-
-  render () {
+  render() {
     const TagName = this.state.display;
     return (
       <div className="App" >
-        <SideNavComp options={this.options}/>
+        <SideNavComp options={this.options} />
         <TagName />
       </div>
     )
