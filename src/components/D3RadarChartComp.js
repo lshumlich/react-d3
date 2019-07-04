@@ -105,14 +105,8 @@ class D3RadarChartComp extends Component {
 	render() {
 		return (
 			<div>
-				<h3>We are in D3RadarChartComp</h3>
-				<p className="raleway">
-					Now this should be raleway font. Does it look like it?
-				</p>
-				<p className="pacifico">The face of the moon was in shadow.?</p>
-
+				<h3>D3RadarChartComp</h3>
 				<div className="radarChart"></div>
-
 			</div>
 		);
 	}

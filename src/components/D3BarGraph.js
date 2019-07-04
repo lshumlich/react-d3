@@ -9,38 +9,35 @@ class D3BarGraph {
     drawBarGraph = (id, data, options) => {
 
         this.cfg = {
-            ticks: 20, // approxamate number of ticks
-            color: "steelblue", // any color
-            format: ",.0f",  // for options: https://github.com/d3/d3-format 
-            width: 960,
-            height: 500,
-            margin: { top: 20, right: 30, bottom: 30, left: 30 },
-            min: null, // if you wish to override
-            max: null, // if you wish to override
+            color: "steelblue",     // any color
+            format: ",.0f",         // for options: https://github.com/d3/d3-format 
+            width: 960,             // default width
+            height: 500,            // default height
+            margin: { top: 20, right: 30, bottom: 30, left: 30 }, // default Margin
+            min: null,              // minimum value for y index
+            max: null,              // maxamum value for y index
         }
 
-        //Put all of the overriden options into a variable called cfg
+        // update the cfg object with overridden options
         if ("undefined" !== typeof options) {
             for (var i in options) {
                 if ("undefined" !== typeof options[i]) {
                     this.cfg[i] = options[i];
                 }
-            } //for i
-        } //if
+            }
+        }
 
-        const width = this.cfg.width - this.cfg.margin.left - this.cfg.margin.right,
-            height = this.cfg.height - this.cfg.margin.top - this.cfg.margin.bottom;
+        this.width = this.cfg.width - this.cfg.margin.left - this.cfg.margin.right;
+        this.height = this.cfg.height - this.cfg.margin.top - this.cfg.margin.bottom;
 
-        this.height = height;
-
-        console.log("Height * width", height, width);
+        // this.height = height;
 
         this.x = d3.scaleBand()
-            .rangeRound([0, width])
+            .rangeRound([0, this.width])
             .padding(0.1);
 
         this.y = d3.scaleLinear()
-            .rangeRound([height, 0]);
+            .rangeRound([this.height, 0]);
 
         this.x.domain(data.map((v) => v.label));
         this.y.domain([0, d3.max(data, (v) => v.value)]);
@@ -55,22 +52,20 @@ class D3BarGraph {
             .select("svg")
             .remove();
 
-        const svg =
+        this.svg =
             d3.select(id)
                 .append("svg")
-                .attr("width", width + this.cfg.margin.left + this.cfg.margin.right)
-                .attr("height", height + this.cfg.margin.top + this.cfg.margin.bottom)
+                .attr("width", this.width + this.cfg.margin.left + this.cfg.margin.right)
+                .attr("height", this.height + this.cfg.margin.top + this.cfg.margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + this.cfg.margin.left + "," + this.cfg.margin.top + ")");
 
-        this.svg = svg;
-
         // Draw the axis on the Bottom
         this.yAxis = this.svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + this.height + ")")
             .call(d3.axisBottom(this.x));
 
-        this.xAxis = svg.append("g");
+        this.xAxis = this.svg.append("g");
         this.xAxis
             .call(d3.axisLeft(this.y))
             .append("text")
@@ -81,32 +76,18 @@ class D3BarGraph {
             .attr("text-anchor", "end")
             .text("Scale");
 
-        let x = this.x;
-        let y = this.y;
-
-        this.updateBar(this.svg, data, x, y, height);
+        this.updateBar(this.svg, data, this.x, this.y, this.height);
 
     }
-
 
     //  Example of doing a refresh
     //  https://bl.ocks.org/tillg/14a9b1a363e82223c764551e977405f5
     refresh = (data) => {
 
-        // console.log(data);
-
-        const x = this.x;
-        const y = this.y;
-        const height = this.height;
-
-        console.log("In front end v3");
-
         this.x.domain(data.map((v) => v.label));
         this.y.domain([0, d3.max(data, (v) => v.value)]);
 
         // Redraw the left axis
-        // this.svg.append("g")
-        // this.svg.selectAll(".y.axis")
         this.xAxis
             .transition()
             .duration(1000)
@@ -115,10 +96,10 @@ class D3BarGraph {
         this.yAxis
             .transition()
             .duration(1000)
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + this.height + ")")
             .call(d3.axisBottom(this.x));
 
-        this.updateBar(this.svg, data, x, y, height);
+        this.updateBar(this.svg, data, this.x, this.y, this.height);
 
     }
 
@@ -165,9 +146,7 @@ class D3BarGraph {
             .attr("height", function (d) {
                 return height - y(Number(d.value));
             });
-
     }
-
 }
 
 export default D3BarGraph;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./D3Play.css";
-import SideNavComp from './SideNavCompV2';
+import SideNavComp from './SideNavComp';
 import D3Play from "./D3Play";
 
 /**
@@ -18,7 +18,6 @@ class D3PlayComp extends Component {
             { label: "Simple simpleDataSelect", value: this.d3Play.simpleDataSelect},
             { label: "Simple simpleSVG", value: this.d3Play.simpleSVG},
             { label: "Simple simpleDataSVG", value: this.d3Play.simpleDataSVG},
-            { label: "Play 2", value: 'play 2' },
         ];
         this.options.title = "From D3PlayComp";
         this.options.callback = this.doCallback;

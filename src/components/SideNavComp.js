@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import "./SideNav.css";
 
-class SideNavComp extends Component {
+class SideNavCompV2 extends Component {
 
-    stuffFunc = (m) => {
-        console.log("stuffFunc", m)
+    constructor() {
+        super()
+        this.state = { renderIcon: true };
     }
 
-    openNav = () => {
-        // document.getElementById("mySidenav").style.width = "200px";
-        console.log(this.menu);
-        console.log(this.menu.props);
-        // this.menu.style.width = "200px";
-        // this.menu.className("WhatEver");
-    }
+    componentDidMount() {
 
-    closeNav = () => {
-        // document.getElementById("mySidenav").style.width = "0px";
+        const ops = this.props.options.map((o, i) =>
+            <p key={i} index={i} onClick={this.callback}>{o.label}</p>
+        );
+
+        this.options =
+            <div className="navMenu"
+                onMouseLeave={() => this.setState({ renderIcon: true })}
+            >
+                {ops}
+            </div>
+
     }
 
     callback = (o) => {
@@ -29,44 +33,21 @@ class SideNavComp extends Component {
     }
 
     render() {
-        console.log('Render Props From: ' + this.props.options.title);
 
-        const options = this.props.options.map((o, i) =>
-            <p key={i} index={i} onClick={this.callback}>{o.label}</p>
-        );
-
-        this.menu =
-            <div 
-                className="sidenav"
-                onMouseLeave={this.closeNav}
-                onMouseEnter={this.openNav}
-            >
-                {options}
+        this.icon =
+            <div>
+                <span className="navIcon"
+                    onMouseEnter={() => this.setState({ renderIcon: false })}
+                >&#9776;</span>
             </div>
-
 
         return (
             <React.Fragment>
-                <span className="navIcon"
-                    onMouseEnter={this.openNav}
-                >&#9776;</span>
-
-                {this.menu}
-
-                {/* <div id="mySidenav"
-                    className="sidenav"
-                    onMouseLeave={this.closeNav}
-                    onMouseEnter={this.openNav}
-                >
-                    {options}
-                </div> */}
-
-
-
-
+                {this.state.renderIcon ? this.icon : this.options}
             </React.Fragment>
+
         );
     }
 }
 
-export default SideNavComp;
+export default SideNavCompV2;

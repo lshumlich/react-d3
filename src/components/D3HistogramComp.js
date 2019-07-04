@@ -46,10 +46,7 @@ class D3HistogramComp extends Component {
     render() {
         return (
             <div>
-                <h3>We are in D3HistogramComp</h3>
-                <p className="raleway">
-                    Now this should be raleway font. Does it look like it?
-                </p>
+                <h3>D3HistogramComp</h3>
                 <p onClick={this.refresh} className="pacifico">Refresh the data.</p>
 
                 <div className="histogram"></div>

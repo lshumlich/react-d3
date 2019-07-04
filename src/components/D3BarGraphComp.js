@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import * as d3 from 'd3'
-import D3BarGraph from "./D3BarGraphV2";
+import D3BarGraph from "./D3BarGraph";
 
 /**
  * inspired by: https://bl.ocks.org/caravinden/d04238c4c9770020ff6867ee92c7dac1
@@ -44,11 +43,10 @@ class D3BarGraphV2Comp extends Component {
     }
 
     refresh = () => {
-        // console.log(this.data);
+
         this.data.forEach((a,b,c) => {
             let v = Math.round(a.value * Math.random() * 2);
             a.value = v ? v : 5;
-            // console.log(before,'--',a.value);
         });
 
         if (this.add) {
@@ -57,14 +55,14 @@ class D3BarGraphV2Comp extends Component {
             this.data.shift();
         }
         this.add = (!this.add);
-        console.log(this.data);
+
         this.d3barGraph.refresh(this.data);
     }
 
     render() {
         return (
             <div>
-                <h3>We are in D3BarGraphV2Comp</h3>
+                <h3>D3BarGraphComp</h3>
                 <p onClick={this.refresh} className="pacifico">Refresh the data.</p>
 
                 <div className="bargraph"></div>

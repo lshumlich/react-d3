@@ -9,26 +9,25 @@ class D3Histogram {
     drawHistogram = (id, values, options) => {
 
         this.cfg = {
-            ticks: 20,          // approxamate number of ticks
-            color: "steelblue", // any color
-            format: ",.0f",     // for options: https://github.com/d3/d3-format 
-            width: 960,
-            height: 500,
-            margin: { top: 20, right: 30, bottom: 30, left: 30 },
-            min: null,          // if you wish to override
-            max: null,          // if you wish to override
+            ticks: 20,              // approxamate number of ticks
+            color: "steelblue",     // any color
+            format: ",.0f",         // for options: https://github.com/d3/d3-format 
+            width: 960,             // default width
+            height: 500,            // default height
+            margin: { top: 20, right: 30, bottom: 30, left: 30 }, // default Margin
+            min: null,              // minimum value for y index
+            max: null,              // maxamum value for y index
         }
 
-        //Put all of the overriden options into a variable called cfg
+        // update the cfg object with overridden options
         if ("undefined" !== typeof options) {
             for (var i in options) {
                 if ("undefined" !== typeof options[i]) {
                     this.cfg[i] = options[i];
                 }
-            } //for i
-        } //if
+            }
+        }
 
-        // A formatter for counts. For options see:
         const formatCount = d3.format(this.cfg.format);
         this.formatCount = formatCount;
 
@@ -45,7 +44,7 @@ class D3Histogram {
             .range([0, width]);
         this.x = x;
 
-        // Generate a histogram using twenty uniformly-spaced bins.
+        // Generate a histogram using twenty uniformly-spaced bins (about).
         const data = d3.histogram()
             .domain(x.domain())
             .thresholds(x.ticks(this.cfg.ticks))(values);
@@ -75,7 +74,7 @@ class D3Histogram {
             .select("svg")
             .remove();
 
-        var svg = d3
+        this.svg = d3
             .select(id)
             .append("svg")
             .attr("width", width + this.cfg.margin.left + this.cfg.margin.right)
@@ -83,9 +82,7 @@ class D3Histogram {
             .append("g")
             .attr("transform", "translate(" + this.cfg.margin.left + "," + this.cfg.margin.top + ")");
 
-        this.svg = svg;
-
-        const bar = svg.selectAll(".bar")
+        const bar = this.svg.selectAll(".bar")
             .data(data)
             .enter().append("g")
             .attr("class", "bar")
@@ -104,11 +101,10 @@ class D3Histogram {
             .attr("text-anchor", "middle")
             .text(function (d) { return formatCount(d.length); });
 
-        svg.append("g")
+        this.svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
-
     }
 
     /*
@@ -118,7 +114,6 @@ class D3Histogram {
 
         let y = this.y;
         let x = this.x;
-        let svg = this.svg;
         let height = this.height;
         let formatCount = this.formatCount;
 
@@ -129,13 +124,13 @@ class D3Histogram {
         // Reset y domain using new data
         var yMax = d3.max(data, function (d) { return d.length });
         var yMin = d3.min(data, function (d) { return d.length });
-        y.domain([0, yMax]);
+        this.y.domain([0, yMax]);
 
         var colorScale = d3.scaleLinear()
             .domain([yMin, yMax])
             .range([d3.rgb(this.cfg.color).brighter(), d3.rgb(this.cfg.color).darker()]);
 
-        var bar = svg.selectAll(".bar").data(data);
+        var bar = this.svg.selectAll(".bar").data(data);
 
         // Remove object with data
         bar.exit().remove();
@@ -157,6 +152,7 @@ class D3Histogram {
 
     }
 
+    // From the previous example
     // onRefresh = () => {
     //     var values = d3.range(1000).map(d3.randomNormal(20, 5));
     //     this.refresh(values);
