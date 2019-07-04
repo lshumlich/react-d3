@@ -4,7 +4,7 @@ import * as d3 from 'd3'
  * 
  * These code examples help step through many of the main concepts in D3. 
  * Each section builds on the last section and progresses to building very 
- * functional graphs. The D3JS.or site takes it to the next level. I hope 
+ * functional graphs. The d3js.org site takes it to the next level. I hope 
  * this sparks the interest to start including data visualization in the 
  * applications you build.
  * 
@@ -19,7 +19,7 @@ import * as d3 from 'd3'
  * 
  * Concept 3 - SVG Graphics
  * 
- * SVG is a sophisticated graphing engin that is included in the browser. 
+ * SVG is a sophisticated graphing engine that is included in the browser. 
  * These tools can allow you to harness that incredible potential.
  * 
  * Concept 4 - SVG Graphics with selectors can be very powerful.
@@ -27,9 +27,15 @@ import * as d3 from 'd3'
 
 class D3Play {
 
+    constructor() {
+        this.color1 = "red";
+        this.color2 = "green";
+        this.color = this.color1;
+    }
+
     play = () => {
 
-        this.simpleSelect();
+        // this.simpleSelect();
         // this.simpleDataSelect();
         // this.simpleSVG();
         // this.simpleDataSVG();
@@ -41,18 +47,19 @@ class D3Play {
         // Simple example of a select and append
         d3.select('#myStuff')
             .append('h3')
-            .text('Yet Another Thing');
+            .text('Yet Another h3 Thing');
 
+        this.color = this.color === this.color1 ? this.color2 : this.color1;
         d3.select('#myStuff')
             .selectAll('h3')
-            .style("color", "green");
+            .style("color", this.color);
 
     }
 
     simpleDataSelect = () => {
 
         /**
-         * This sets up a join. It looks for all "h3" DOM object
+         * This sets up a join. It looks for all "h3" DOM objects
          * in the 'mystuff' id 
          * and joins them with the array of data. 
          * One of three things will happen with the join:
@@ -62,8 +69,8 @@ class D3Play {
          *  - for the ones that match update the DOM objects
          */
 
-        // const data = ['one', 'two', 'three', 'four', 'five'];
-        const data = ['one'];
+        const data = ['one', 'two', 'three', 'four', 'five'];
+        // const data = ['one'];
 
         let h3s = d3.select('#myStuff')
             .selectAll('h3')

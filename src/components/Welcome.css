@@ -1,0 +1,30 @@
+.parent {
+    display: flex;
+    height: 100vh;
+    /* border: solid; */
+    /* Or whatever */
+}
+
+.child {
+    /* width: 100px; */
+    /* Or whatever */
+    /* height: 100px; */
+    /* Or whatever */
+    margin: auto;
+    /* Magic! */
+    /* border: solid; */
+}
+
+.msg {
+    /* width: 100px; */
+    /* Or whatever */
+    /* height: 100px; */
+    /* Or whatever */
+    margin: auto;
+    /* Magic! */
+    /* border: solid; */
+    font-size: 50px;
+    font-weight: 90;
+    font-family: "Pacifico";
+    color: steelblue;
+}

@@ -11,11 +11,10 @@ This uses D3 version  5.9.2.
 
 To run using that container.
 
-- docker run -it -p 3000:3000 --name reactdev -v ~/docker/react/react-d3/src:/frontend/src react-dev:16.8.6 
+ docker pull lshumlich/react-dev:16.8.6
 
-Substatute your directory with the following:
+docker run -it -p 3000:3000 --rm --name reactdev -v ~/docker/react/react-d3/src:/frontend/src lshumlich/react-dev:16.8.6
 
-- ~/docker/react/react-d3/src
 
 ## More Documentation Required. 
 Usefull docker commands:
