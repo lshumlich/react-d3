@@ -15,14 +15,14 @@ class D3ComboComp extends Component {
 
     componentDidMount = () => {
         //
-        // This should fetch data from an API and then graph away...
+        // This method should fetch data from an API and then graph away...
         //
         this.drawHistogram();
         this.radarChart();
     }
 
     drawHistogram = () => {
-        // Generate a 1000 data points using normal distribution with mean=20, deviation=5
+        // Generate 1000 data points using normal distribution with mean=20, deviation=5
         // const values = d3.range(1000).map(d3.randomNormal(20, 5));
         const options = {
             ticks: 20,
@@ -52,7 +52,7 @@ class D3ComboComp extends Component {
         //////////////////////////////////////////////////////////////
 
         //
-        // This is just hardcoded. When used for real this is the structure of the data. 
+        // This is just hardcoded. When used for real, this is the structure of the data. 
         // One minor issue right now is that the "Label iPhone, Samsung, Nokia" does not show up
 
         var data = [
@@ -90,20 +90,6 @@ class D3ComboComp extends Component {
                 { axis: "To Be A Smartphone", value: 0.3 }
             ]
         ];
-
-        // //////////////////////////////////////////////////////////////
-        // //////////////////////// Set-Up //////////////////////////////
-        // //////////////////////////////////////////////////////////////
-
-        // var margin = { top: 100, right: 100, bottom: 100, left: 100 },
-        // 	width =
-        // 		Math.min(700, window.innerWidth - 10) -
-        // 		margin.left -
-        // 		margin.right,
-        // 	height = Math.min(
-        // 		width,
-        // 		window.innerHeight - margin.top - margin.bottom - 20
-        // 	);
 
         //////////////////////////////////////////////////////////////
         //////////////////// Draw the Chart //////////////////////////

@@ -13,8 +13,8 @@ class App extends Component {
 
   constructor() {
     super();
-    // this.state = {display: WelcomeComp};
-    this.state = {display: D3ComboComp};
+    this.state = {display: WelcomeComp};
+    // this.state = {display: D3ComboComp};
     this.options = [
       { label: "Welcome", value: WelcomeComp },
       { label: "React", value: ReactLogoComp },

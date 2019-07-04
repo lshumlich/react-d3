@@ -15,7 +15,7 @@ class D3BarGraph {
             height: 500,            // default height
             margin: { top: 20, right: 30, bottom: 30, left: 30 }, // default Margin
             min: null,              // minimum value for y index
-            max: null,              // maxamum value for y index
+            max: null,              // maximum value for y index
         }
 
         // update the cfg object with overridden options
@@ -46,7 +46,7 @@ class D3BarGraph {
         //////////// Create the container SVG and g /////////////
         /////////////////////////////////////////////////////////
 
-        // Remove whatever chart with the same id/class was present before
+        // Remove whatever chart with the same id/class that was present before
 
         d3.select(id)
             .select("svg")
@@ -60,7 +60,7 @@ class D3BarGraph {
                 .append("g")
                 .attr("transform", "translate(" + this.cfg.margin.left + "," + this.cfg.margin.top + ")");
 
-        // Draw the axis on the Bottom
+        // Draw the axis on the bottom
         this.yAxis = this.svg.append("g")
             .attr("transform", "translate(0," + this.height + ")")
             .call(d3.axisBottom(this.x));
@@ -114,7 +114,7 @@ class D3BarGraph {
             .style("opacity", 0)
             .remove();
 
-        // Updates the bars that exist
+        // Update the bars that exist
         bar
             .transition()
             .duration(1000)

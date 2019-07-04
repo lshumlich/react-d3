@@ -11,7 +11,7 @@ This uses D3 version  5.9.2.
 
 To run using that container.
 
- docker pull lshumlich/react-dev:16.8.6
+docker pull lshumlich/react-dev:16.8.6
 
 docker run -it -p 3000:3000 --rm --name reactdev -v ~/docker/react/react-d3/src:/frontend/src lshumlich/react-dev:16.8.6
 

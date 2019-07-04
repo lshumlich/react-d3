@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 /**
- * The code I wished I had when I started D3.
+ * The code I wish I had when I started D3.
  * 
  * These code examples help step through many of the main concepts in D3. 
  * Each section builds on the last section and progresses to building very 
@@ -33,21 +33,12 @@ class D3Play {
         this.color = this.color1;
     }
 
-    play = () => {
-
-        // this.simpleSelect();
-        // this.simpleDataSelect();
-        // this.simpleSVG();
-        // this.simpleDataSVG();
-
-    }
-
     simpleSelect = () => {
 
         // Simple example of a select and append
         d3.select('#myStuff')
             .append('h3')
-            .text('Yet Another h3 Thing');
+            .text('Yet another H3 thing');
 
         this.color = this.color === this.color1 ? this.color2 : this.color1;
         d3.select('#myStuff')
@@ -63,10 +54,11 @@ class D3Play {
          * in the 'mystuff' id 
          * and joins them with the array of data. 
          * One of three things will happen with the join:
-         *  - more DOM objects then data (remove the extra DOM objects)
-         *  - more items in the array then DOM objects 
-         *    (then add or enter the extra DOM objects)
-         *  - for the ones that match update the DOM objects
+         *  - more DOM objects will exist than data elements (remove the extra DOM objects)
+         *  - more items in the array will exist than DOM objects  
+         *    (then add or enter the extra DOM objects from the array)
+         *  - for the ones that have the same number of DOM objects and items in the array,
+         *    update the DOM objects
          */
 
         const data = ['one', 'two', 'three', 'four', 'five'];

@@ -16,7 +16,7 @@ class D3Histogram {
             height: 500,            // default height
             margin: { top: 20, right: 30, bottom: 30, left: 30 }, // default Margin
             min: null,              // minimum value for y index
-            max: null,              // maxamum value for y index
+            max: null,              // maximum value for y index
         }
 
         // update the cfg object with overridden options

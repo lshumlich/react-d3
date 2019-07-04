@@ -14,7 +14,7 @@ class D3BarGraphV2Comp extends Component {
 
     componentDidMount = () => {
         //
-        // This should fetch data from an API and then graph away...
+        // This method should fetch data from an API and then graph away...
         //
         this.barGraph();
     }

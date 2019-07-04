@@ -10,7 +10,7 @@ class WelcomeComp extends Component {
                 <div className="child">
                     <div className="msg">
                         <p>Welcome to</p>
-                        <p>Data Visulization</p>
+                        <p>Data Visualization</p>
                     </div>
                 </div>
 			</div>

@@ -15,9 +15,9 @@ class D3PlayComp extends Component {
         this.d3Play = new D3Play();
         this.options = [
             { label: "Simple Select", value: this.d3Play.simpleSelect},
-            { label: "Simple simpleDataSelect", value: this.d3Play.simpleDataSelect},
-            { label: "Simple simpleSVG", value: this.d3Play.simpleSVG},
-            { label: "Simple simpleDataSVG", value: this.d3Play.simpleDataSVG},
+            { label: "Simple Data Select", value: this.d3Play.simpleDataSelect},
+            { label: "Simple SVG", value: this.d3Play.simpleSVG},
+            { label: "Simple SVG with Data", value: this.d3Play.simpleDataSVG},
         ];
         this.options.title = "From D3PlayComp";
         this.options.callback = this.doCallback;
