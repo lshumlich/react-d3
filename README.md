@@ -1,7 +1,7 @@
 
 # Welcome
 
-This is a ReactJS version of some common D3 charts. This is sample code used to get learners excited about including visualization in their projects. It is intended for the EvolveU students of the Full Stack Developer program.
+This is a ReactJS version of some common D3 V5 charts. This is sample code used to get learners excited about including visualization in their projects. It is intended for the EvolveU students of the Full Stack Developer program.
 
 There are two ways to follow along in this lecture: using Docker or using a fresh install of React. The preferred way to run this lecture is using docker. If you have issues with the Docker option, then default to the React option. 
 
