@@ -7,6 +7,7 @@ import D3BarGraphComp from './components/D3BarGraphComp';
 import D3HistogramComp from './components/D3HistogramComp';
 import D3RadarChartComp from './components/D3RadarChartComp';
 import D3ComboComp from './components/D3ComboComp';
+import D3ExerciseComp from './components/D3ExerciseComp';
 import './App.css';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
       { label: "Histogram", value: D3HistogramComp },
       { label: "Radar Chart", value: D3RadarChartComp },
       { label: "Combo", value: D3ComboComp },
+      { label: "Exercise", value: D3ExerciseComp },
     ];
     // this.options.title = "From App";
     this.options.callback = this.setDisplay;
@@ -30,7 +32,7 @@ class App extends Component {
 
 
   setDisplay = (option) => {
-    console.log("D3PlayComp.setDisplay:", option);
+    // console.log("D3PlayComp.setDisplay:", option);
     this.setState({
       display: option,
     })
